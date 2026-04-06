@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui" ;
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+   --color-primary: oklch(62% 0.20 10);
+  --color-secondary: oklch(70% 0.08 300);
+}
+
+body {
+  font-family: "Roboto Slab", serif;
+}
+
+.mySwiper .swiper-slide-active > div {
+  /* background-color: #cdb1c2 !important; */
+  @apply bg-secondary ;
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Rahim Uddin",
+    "role": "E-commerce Seller",
+    "image": "https://randomuser.me/api/portraits/men/32.jpg",
+    "rating": 5,
+    "comment": "Shifto use korar por amar delivery process onek fast hoye geche. Customer satisfaction clearly bereche."
+  },
+  {
+    "name": "Nusrat Jahan",
+    "role": "Online Boutique Owner",
+    "image": "https://randomuser.me/api/portraits/women/44.jpg",
+    "rating": 5,
+    "comment": "Ami age onek courier niye problem face korsilam, but Shifto diye ekhon smooth delivery manage korte pari."
+  },
+  {
+    "name": "Tanvir Hasan",
+    "role": "Warehouse Manager",
+    "image": "https://randomuser.me/api/portraits/men/55.jpg",
+    "rating": 4,
+    "comment": "Dashboard ta onek clean and easy to use. Staff ra easily handle korte pare."
+  },
+  {
+    "name": "Sadia Afrin",
+    "role": "Facebook Shop Owner",
+    "image": "https://randomuser.me/api/portraits/women/68.jpg",
+    "rating": 5,
+    "comment": "Order tracking system ta awesome! Customer ra nijera update check korte pare."
+  },
+  {
+    "name": "Imran Hossain",
+    "role": "Retail Business Owner",
+    "image": "https://randomuser.me/api/portraits/men/71.jpg",
+    "rating": 4,
+    "comment": "Delivery management ekdom hassle-free hoye geche. Time save hoy onek."
+  },
+  {
+    "name": "Farzana Akter",
+    "role": "Small Business Owner",
+    "image": "https://randomuser.me/api/portraits/women/21.jpg",
+    "rating": 5,
+    "comment": "Ami notun business start korsilam, Shifto amar logistics handle korte onek help korse."
+  },
+  {
+    "name": "Mahmudul Karim",
+    "role": "Distributor",
+    "image": "https://randomuser.me/api/portraits/men/40.jpg",
+    "rating": 5,
+    "comment": "Bulk order delivery manage kora ekhon onek easy. Performance really impressive."
+  },
+  {
+    "name": "Jannat Ara",
+    "role": "Clothing Brand Owner",
+    "image": "https://randomuser.me/api/portraits/women/50.jpg",
+    "rating": 4,
+    "comment": "UI ta modern, use korte bhalo lage. Amar team o quickly adapt kore felse."
+  },
+  {
+    "name": "Rakib Chowdhury",
+    "role": "Logistics Coordinator",
+    "image": "https://randomuser.me/api/portraits/men/65.jpg",
+    "rating": 5,
+    "comment": "Real-time tracking and reporting feature gula amar kaj onek easy kore dise."
+  },
+  {
+    "name": "Tania Sultana",
+    "role": "Online Shop Owner",
+    "image": "https://randomuser.me/api/portraits/women/36.jpg",
+    "rating": 5,
+    "comment": "Customer delivery update niye ar kono complain nai. Shifto really reliable."
+  }
+]
