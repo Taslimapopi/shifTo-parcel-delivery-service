@@ -6,8 +6,21 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-   --color-primary: oklch(62% 0.20 10);
-  --color-secondary: oklch(70% 0.08 300);
+  --color-primary: #5C3D99;
+  --color-secondary: #9F7AEA;
+  --color-accent: #1c164c;
+  --color-neutral: #E0D9FF;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #9F7AEA;
+  --color-secondary: #5C3D99;
+  --color-accent: #E0D9FF;
+  --color-neutral: #2A2438;
+  --color-base-100: #1F1B2E;
+  --color-base-200: #171625;
+  --color-base-300: #13121E;
 }
 
 body {

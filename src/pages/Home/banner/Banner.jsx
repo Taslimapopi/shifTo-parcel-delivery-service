@@ -8,7 +8,7 @@ import CustomButton from "../../shared/buttons/CustomButton";
 
 const Banner = () => {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Carousel 
         autoPlay 
         infiniteLoop 
@@ -16,7 +16,7 @@ const Banner = () => {
         showStatus={false}
       >
         {/* স্লাইড ১ */}
-        <div className="relative h-[60vh] w-full flex items-center justify-center bg-gray-900">
+        <div className="relative h-[80vh] w-full flex items-center justify-center bg-gray-900 ">
           <img 
             src={bannerimg1} 
             className="h-full w-full " 
@@ -31,7 +31,7 @@ const Banner = () => {
         </div>
 
         {/* স্লাইড ২ */}
-        <div className="relative h-[60vh] w-full flex items-center justify-center bg-gray-900">
+        <div className="relative h-[80vh] w-full flex items-center justify-center bg-gray-900">
           <img 
             src={bannerimg2} 
             className="h-full w-full " 
@@ -45,7 +45,7 @@ const Banner = () => {
         </div>
 
         {/* স্লাইড ৩ */}
-        <div className="relative h-[60vh] w-full flex items-center justify-center bg-gray-900">
+        <div className="relative h-[80vh] w-full flex items-center justify-center bg-gray-900">
           <img 
             src={bannerimg3} 
             className="h-full w-full " 

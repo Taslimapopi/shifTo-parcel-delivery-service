@@ -7,21 +7,28 @@ import { useLoaderData } from "react-router";
 const Coverage = () => {
   const position = [23.6, 90.3563];
   const centers = useLoaderData();
-  const mapRef = useRef(null)
+  const mapRef = useRef(null);
   console.log(centers);
 
+  let timeout;
 
   const handleSearchLocation = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const location = form.location.value;
+    const value = e.target.value.toLowerCase();
 
-    const district = centers.find(c=>c.district.toLowerCase().includes(location.toLowerCase()))
-    if(district){
-        const cord = [district.latitude, district.longitude]
-        mapRef.current.flyTo(cord,14)
-    }
-    
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      const district = centers.find(
+        (c) =>
+          c.district.toLowerCase().includes(value) ||
+          c.city.toLowerCase().includes(value) ||
+          c.covered_area.some((area) => area.toLowerCase().includes(value)),
+      );
+
+      if (district && mapRef.current) {
+        mapRef.current.flyTo([district.latitude, district.longitude], 12);
+      }
+    }, 400); // 400ms delay
   };
   return (
     <div>
@@ -35,6 +42,7 @@ const Coverage = () => {
             placeholder="Search location..."
             className="flex-1 px-4 py-3 outline-none text-gray-700"
             name="location"
+            onChange={handleSearchLocation}
           />
 
           <button className="bg-primary text-white px-5 py-3 hover:opacity-90 transition">
@@ -56,9 +64,10 @@ const Coverage = () => {
           />
 
           {centers.map((center, index) => (
-            <Marker position={[center.latitude,center.longitude]} key={index}>
-              <Popup >
-                <strong>{center.district}</strong> <br /> Service Centers: {center.covered_area.join(',')}
+            <Marker position={[center.latitude, center.longitude]} key={index}>
+              <Popup>
+                <strong>{center.district}</strong> <br /> Service Centers:{" "}
+                {center.covered_area.join(",")}
               </Popup>
             </Marker>
           ))}

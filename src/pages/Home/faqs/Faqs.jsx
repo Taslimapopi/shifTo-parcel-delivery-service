@@ -55,15 +55,15 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="bg-primary py-16 px-4 rounded-tl-4xl rounded-br-4xl">
+    <section className="bg-accent py-16 px-4 rounded-tl-4xl rounded-br-4xl">
       <div className="max-w-4xl mx-auto">
         
         {/* Heading */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 text-white">
           
         
           <Headings>Frequently Asked Questions</Headings>
-          <p className="text-black-500 mt-3">
+          <p className="text-black-500!important mt-3">
             Everything you need to know about Shifto
           </p>
         </div>
