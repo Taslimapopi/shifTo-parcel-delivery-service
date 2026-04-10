@@ -1,27 +1,33 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 
 const RegisterForm = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, watch } = useForm({ mode: "onBlur" });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
+  const {registerUser} = useAuth()
 
   const password = watch("password");
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleRegister = (data) => {
     console.log("Register data:", data);
+    registerUser(data.email, data.password)
+    .then(res=>console.log(res))
+    .catch(error=>console.log(error))
+
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => setImagePreview(reader.result);
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   return (
     <div className="w-full max-w-md bg-white dark:bg-base-300 p-8 rounded-3xl shadow-2xl border border-base-200 dark:border-base-500">
@@ -39,7 +45,7 @@ const RegisterForm = () => {
           </div>
           <label className="cursor-pointer text-primary font-medium text-sm hover:underline">
             Upload profile photo
-            <input
+            {/* <input
               type="file"
               accept="image/*"
               className="hidden"
@@ -51,7 +57,7 @@ const RegisterForm = () => {
                 }
               })}
               onChange={handleImageChange}
-            />
+            /> */}
           </label>
           {errors.profileImage && <p className="text-red-500 text-sm mt-1">{errors.profileImage.message}</p>}
         </div>

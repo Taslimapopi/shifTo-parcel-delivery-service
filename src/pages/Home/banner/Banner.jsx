@@ -1,60 +1,198 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import bannerimg1 from "../../../assets/banner/banner1.jpg";
-import bannerimg2 from "../../../assets/banner/banner2.jpg";
-import bannerimg3 from "../../../assets/banner/banner3.jpg";
-import CustomButton from "../../shared/buttons/CustomButton";
+import bannerimg1 from "../../../assets/banner2/1.png";
+import bannerimg2 from "../../../assets/banner2/2.png";
+import bannerimg3 from "../../../assets/banner2/3.png";
+import bannerimg4 from "../../../assets/banner2/4.png";
+import bannerimg5 from "../../../assets/banner2/5.png";
+import bannerimg6 from "../../../assets/banner2/6.png";
+import bannerimg7 from "../../../assets/banner2/7.png";
+import bannerimg8 from "../../../assets/banner2/8.png";
 
 const Banner = () => {
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Carousel 
         autoPlay 
         infiniteLoop 
         showThumbs={false} 
         showStatus={false}
+        showArrows={false}
+        interval={1000}
+        transitionTime={200}
+        className="rounded-b-3xl overflow-hidden"
       >
-        {/* স্লাইড ১ */}
-        <div className="relative h-[80vh] w-full flex items-center justify-center bg-gray-900 ">
+        {/* Slide 1 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-baseline-last justify-center">
           <img 
             src={bannerimg1} 
-            className="h-full w-full " 
-            alt="Banner 1"
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Fast parcel delivery"
           />
-          {/* এই অংশটি বাটনের জন্য */}
-          <div className="absolute inset-0 flex justify-start gap-3 items-end bg-black/20">
-             
-             <CustomButton text="Track Parcel" />
-             <CustomButton text="Be a Rider" />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* স্লাইড ২ */}
-        <div className="relative h-[80vh] w-full flex items-center justify-center bg-gray-900">
+        {/* Slide 2 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
           <img 
             src={bannerimg2} 
-            className="h-full w-full " 
-            alt="Banner 2"
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Be a rider"
           />
-          <div className="absolute inset-0 flex justify-start gap-3 items-end bg-black/20">
-             
-             <CustomButton text="Track Parcel" className='!bg-green-500 shadow-lg' />
-             <CustomButton text="Be a Rider" />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Join as Rider
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* স্লাইড ৩ */}
-        <div className="relative h-[80vh] w-full flex items-center justify-center bg-gray-900">
+        {/* Slide 3 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
           <img 
             src={bannerimg3} 
-            className="h-full w-full " 
-            alt="Banner 3"
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Reliable delivery"
           />
-          <div className="absolute inset-0 flex justify-start gap-3 items-end bg-black/20">
-             
-             <CustomButton text="Track Parcel" />
-             <CustomButton text="Be a Rider" />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Slide 4 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
+          <img 
+            src={bannerimg4} 
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Reliable delivery"
+          />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Slide 5 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
+          <img 
+            src={bannerimg5} 
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Reliable delivery"
+          />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Slide 6 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
+          <img 
+            src={bannerimg6} 
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Reliable delivery"
+          />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Slide 7 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
+          <img 
+            src={bannerimg7} 
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Reliable delivery"
+          />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Slide 8 */}
+        <div className="relative h-[85vh] md:h-[90vh] flex items-end justify-center">
+          <img 
+            src={bannerimg8} 
+            className="absolute inset-0 h-full w-full object-cover" 
+            alt="Reliable delivery"
+          />
+          <div className="absolute inset-0 " />
+          
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 text-white">
+           
+            <div className="flex flex-wrap gap-4">
+              <button className="button px-8 py-3 text-lg font-semibold">
+                Track Parcel
+              </button>
+              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </button>
+            </div>
           </div>
         </div>
       </Carousel>

@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({ mode: "onBlur" });
   const [showPassword, setShowPassword] = useState(false);
+  const {signInUser} = useAuth()
 
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleLogin = (data) => {
     console.log("Login data:", data);
+    signInUser(data.email,data.password)
+    .then(res=>alert('login successful'))
+    .catch(error=>console.log(error))
   };
 
   return (
