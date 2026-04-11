@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router";
+import SocialLogIn from "../../../components/SocialLogIn";
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({ mode: "onBlur" });
   const [showPassword, setShowPassword] = useState(false);
   const {signInUser} = useAuth()
+  const location = useLocation();
+  const navigate = useNavigate()
 
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleLogin = (data) => {
     console.log("Login data:", data);
     signInUser(data.email,data.password)
-    .then(res=>alert('login successful'))
+    .then(res=>{
+      navigate(location?.state || '/')})
     .catch(error=>console.log(error))
   };
 
@@ -68,6 +73,10 @@ const LoginForm = () => {
 
         <p className="text-sm text-center text-gray-500 dark:text-gray-400">
           Forgot your password? <a href="#" className="text-primary hover:underline">Reset</a>
+        </p>
+        <SocialLogIn></SocialLogIn>
+        <p className="text-sm text-center text-gray-500 dark:text-gray-400">
+          Don't have an account? <Link to='/register' className="text-primary hover:underline">Register</Link>
         </p>
       </form>
     </div>

@@ -3,7 +3,7 @@ import newsletterBg from '../../../assets/newslwtters.png'; // change path if ne
 
 const Newsletter = () => {
   return (
-    <div className="relative h-[460px] flex items-center overflow-hidden">
+    <div className="relative h-[460px] flex items-center overflow-hidden rounded-t-4xl rounded-b-4xl">
       {/* Background Image */}
       <img 
         src={newsletterBg} 
