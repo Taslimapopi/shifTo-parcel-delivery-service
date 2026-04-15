@@ -1,14 +1,15 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import bannerimg1 from "../../../assets/banner/1.png";
-import bannerimg2 from "../../../assets/banner/2.png";
-import bannerimg3 from "../../../assets/banner/3.png";
-import bannerimg4 from "../../../assets/banner/4.png";
-import bannerimg5 from "../../../assets/banner/5.png";
+import bannerimg1 from "../../../assets/banner2/1.png";
+import bannerimg2 from "../../../assets/banner2/2.png";
+import bannerimg3 from "../../../assets/banner2/3.png";
+import bannerimg4 from "../../../assets/banner2/4.png";
+import bannerimg5 from "../../../assets/banner2/5.png";
 import bannerimg6 from "../../../assets/banner2/6.png";
 import bannerimg7 from "../../../assets/banner2/7.png";
 import bannerimg8 from "../../../assets/banner2/8.png";
+import { Link } from "react-router";
 
 const Banner = () => {
   return (
@@ -39,9 +40,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>

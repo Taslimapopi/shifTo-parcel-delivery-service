@@ -6,6 +6,9 @@ import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/auth/Login/Login";
 import RegisterForm from "../pages/auth/register/RegisterForm";
 import NotFound from "../components/NotFoundPage";
+import PrivateRoute from "./PrivateRoute";
+import Rider from "../pages/rider/Rider";
+import SendParcel from "../pages/sendParcel/SendParcel";
 
 export const router = createBrowserRouter([
   {
@@ -44,5 +47,15 @@ export const router = createBrowserRouter([
   {
     path: '/*',
     Component: NotFound
+  },
+  {
+    path: '/be-rider',
+    element: <PrivateRoute><Rider></Rider></PrivateRoute>
+  },
+  {
+    path:'/send-parcel',
+    element:<SendParcel></SendParcel>,
+   loader: ()=> fetch('/serviceCenters.json').then(res=>res.json())
+
   }
 ]);
