@@ -4,9 +4,12 @@ import Headings from "../shared/Headings";
 import NavBar from "../shared/navaBar/NavBar";
 import Footer from "../shared/footer/Footer";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SendParcel = () => {
   const serviceCenters = useLoaderData();
+  const axiosSecure = useAxiosSecure()
 
   const {
     register,
@@ -61,26 +64,32 @@ const SendParcel = () => {
     setTotalPrice(basePrice);
   }, [weight, parcelType]);
 
-  const onSubmit = (data) => {
-    Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) Swal.fire({
-    title: "Deleted!",
-    text: "Your file has been deleted.",
-    icon: "success"
-  });
-});
-    console.log("Parcel Data:", data);
-    console.log("Total Price:", totalPrice);
-  };
+const onSubmit = (data) => {
+  Swal.fire({
+    title: "Agree with the Cost?",
+    text: `It will cost ৳ ${totalPrice}`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, proceed!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const parcelData = { ...data, totalPrice };   // Add price
 
+      axiosSecure.post("/parcels", parcelData)
+        .then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire("Success!", "Parcel sent successfully", "success");
+          }
+        })
+        .catch((err) => {
+          Swal.fire("Error!", "Failed to send parcel", "error");
+          console.error(err);
+        });
+    }
+  });
+};
   return (
     <div className="min-h-screen bg-gradient-to-br from-base-200 to-base-100 py-12">
       <NavBar></NavBar>

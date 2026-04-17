@@ -77,6 +77,7 @@ const NavBar = () => {
             <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 dark:bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow text-base-content">
               <li><a>Profile</a></li>
               <li><a>Settings</a></li>
+              <li><Link to={'/dashboard'}>Dashboard</Link></li>
               <li>
                 <button onClick={logOut} className="text-red-500 hover:bg-red-50 dark:hover:bg-red-950">
                   Logout

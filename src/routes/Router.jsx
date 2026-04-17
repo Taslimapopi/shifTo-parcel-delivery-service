@@ -9,6 +9,8 @@ import NotFound from "../components/NotFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import Rider from "../pages/rider/Rider";
 import SendParcel from "../pages/sendParcel/SendParcel";
+import Dashboard from "../layouts/DashboardLayout";
+import MyParcel from "../pages/Dashboard/my-parcel/My-parcel";
 
 export const router = createBrowserRouter([
   {
@@ -57,5 +59,15 @@ export const router = createBrowserRouter([
     element:<SendParcel></SendParcel>,
    loader: ()=> fetch('/serviceCenters.json').then(res=>res.json())
 
+  },
+  {
+    path: '/dashboard',
+    Component: Dashboard,
+    children:[
+      {
+        path:'my-parcels',
+        Component:MyParcel
+      }
+    ]
   }
 ]);
