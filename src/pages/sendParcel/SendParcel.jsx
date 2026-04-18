@@ -6,10 +6,12 @@ import Footer from "../shared/footer/Footer";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const SendParcel = () => {
   const serviceCenters = useLoaderData();
   const axiosSecure = useAxiosSecure()
+  const {user} = useAuth()
 
   const {
     register,
@@ -90,6 +92,8 @@ const onSubmit = (data) => {
     }
   });
 };
+
+console.log(user)
   return (
     <div className="min-h-screen bg-gradient-to-br from-base-200 to-base-100 py-12">
       <NavBar></NavBar>
@@ -179,6 +183,8 @@ const onSubmit = (data) => {
                   Full Name
                 </label>
                 <input
+                defaultValue={user?.displayName
+}
                   type="text"
                   {...register("senderName", {
                     required: "Sender name is required",
@@ -219,6 +225,7 @@ const onSubmit = (data) => {
                 </label>
                 <input
                   type="email"
+                  defaultValue={user.email}
                   {...register("senderEmail", {
                     required: "Sender contact is required",
                   })}

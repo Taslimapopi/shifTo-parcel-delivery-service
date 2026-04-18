@@ -56,13 +56,13 @@ export const router = createBrowserRouter([
   },
   {
     path:'/send-parcel',
-    element:<SendParcel></SendParcel>,
+    element:<PrivateRoute><SendParcel></SendParcel></PrivateRoute>,
    loader: ()=> fetch('/serviceCenters.json').then(res=>res.json())
 
   },
   {
     path: '/dashboard',
-    Component: Dashboard,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
       {
         path:'my-parcels',

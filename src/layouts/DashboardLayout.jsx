@@ -1,28 +1,48 @@
-import { useState } from 'react';
-import { 
-  Home, Package, Truck, Users, BarChart3, Settings, LogOut 
-} from 'lucide-react';
-import { Link, Outlet } from 'react-router';
+import { useState } from "react";
+import {
+  Home,
+  Package,
+  Truck,
+  Users,
+  BarChart3,
+  Settings,
+  LogOut,
+} from "lucide-react";
+import { Link, Outlet } from "react-router";
+import logo from "./../assets/logo.png";
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(true);
 
   const menuItems = [
-  { icon: Home, label: 'Dashboard', path: '/' },
-  { icon: Package, label: 'My Parcels', path: '/dashboard/my-parcels' },
-  { icon: Truck, label: 'Deliveries', path: '/deliveries' },
-  { icon: Users, label: 'Drivers', path: '/drivers' },
-  { icon: BarChart3, label: 'Analytics', path: '/analytics' },
-  { icon: Settings, label: 'Settings', path: '/settings' },
-];
+    { icon: Home, label: "Dashboard", path: "/dashboard" },
+    { icon: Package, label: "My Parcels", path: "/dashboard/my-parcels" },
+    { icon: Truck, label: "Deliveries", path: "/deliveries" },
+    { icon: Users, label: "Drivers", path: "/drivers" },
+    { icon: BarChart3, label: "Analytics", path: "/analytics" },
+    { icon: Settings, label: "Settings", path: "/settings" },
+  ];
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className={`${isOpen ? 'w-64' : 'w-20'} bg-white shadow-lg transition-all duration-300 flex flex-col`}>
+      <div
+        className={`${isOpen ? "w-64" : "w-20"} bg-white shadow-lg transition-all duration-300 flex flex-col`}
+      >
         <div className="p-4 border-b flex items-center justify-between">
-          <h1 className={`font-bold text-xl ${!isOpen && 'hidden'}`}>ShifTo</h1>
+          <Link
+            to="/"
+            className={`btn btn-ghost text-xl flex items-center gap-2 font-bold text-xl ${!isOpen && "hidden"}`}
+          >
+            <img
+              className="h-10 w-10 rounded-full"
+              src={logo}
+              alt="Shifto Logo"
+            />
+            <span className="font-semibold">Shifto</span>
+          </Link>
+
           <button onClick={() => setIsOpen(!isOpen)} className="p-2">
-            {isOpen ? '←' : '→'}
+            {isOpen ? "←" : "→"}
           </button>
         </div>
 
@@ -31,7 +51,7 @@ export default function Dashboard() {
             <Link
               key={i}
               to={item.path}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-100 ${item.active ? 'bg-blue-50 text-blue-600' : ''}`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-100 ${item.active ? "bg-blue-50 text-blue-600" : ""}`}
             >
               <item.icon size={20} />
               {isOpen && <span>{item.label}</span>}
