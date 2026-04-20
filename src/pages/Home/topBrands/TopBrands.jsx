@@ -41,16 +41,17 @@ const TopBrands = () => {
   ];
 
   return (
-    <div className="py-16 bg-base-100">
+    <div className="bg-base-100">
       <div className="max-w-6xl mx-auto px-6">
         <Headings>Serving the Nation’s Fastest Growing Companies</Headings>
 
-        <Swiper
+        <div className="border-y-1 border-gray-200 p-3">
+          <Swiper
           spaceBetween={30}
           slidesPerView={6}
           loop={true}
           autoplay={{
-            delay: 2500,
+            delay: 500,
             disableOnInteraction: false,
           }}
           pagination={{ clickable: true }}
@@ -75,6 +76,7 @@ const TopBrands = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        </div>
       </div>
     </div>
   );

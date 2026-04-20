@@ -40,9 +40,11 @@ body {
   height: 3rem;
   padding: 0 2rem;
   border-radius: 1.5rem;
-  background: oklch(62% 0.20 10);
+  /* background: oklch(62% 0.20 10); */
+  background: #efd45c;
   background-size: 400%;
-  color: #fff;
+  /* color: #fff; */
+  color: black;
   border: none;
   cursor: pointer;
   display: flex;
