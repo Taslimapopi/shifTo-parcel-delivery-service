@@ -3,15 +3,16 @@ import { useForm, useWatch } from "react-hook-form";
 import Headings from "../shared/Headings";
 import NavBar from "../shared/navaBar/NavBar";
 import Footer from "../shared/footer/Footer";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 
 const SendParcel = () => {
   const serviceCenters = useLoaderData();
-  const axiosSecure = useAxiosSecure()
-  const {user} = useAuth()
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,8 +36,8 @@ const SendParcel = () => {
   const senderRegion = useWatch({ control, name: "senderRegion" });
   const senderDistrict = useWatch({ control, name: "senderDistrict" });
 
-  const receiverRegion = useWatch({control, name: "receiverRegion"})
-  const receiverDistrict = useWatch({control, name: "receiverDistrict"})
+  const receiverRegion = useWatch({ control, name: "receiverRegion" });
+  const receiverDistrict = useWatch({ control, name: "receiverDistrict" });
 
   const districtByRegion = (region) => {
     const regionDistrict = serviceCenters.filter((c) => c.region === region);
@@ -66,34 +67,42 @@ const SendParcel = () => {
     setTotalPrice(basePrice);
   }, [weight, parcelType]);
 
-const onSubmit = (data) => {
-  Swal.fire({
-    title: "Agree with the Cost?",
-    text: `It will cost ৳ ${totalPrice}`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, proceed!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const parcelData = { ...data, totalPrice };   // Add price
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "Agree with the Cost?",
+      text: `It will cost ৳ ${totalPrice}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, proceed!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const parcelData = { ...data, totalPrice }; // Add price
 
-      axiosSecure.post("/parcels", parcelData)
-        .then((res) => {
-          if (res.data.insertedId) {
-            Swal.fire("Success!", "Parcel sent successfully", "success");
-          }
-        })
-        .catch((err) => {
-          Swal.fire("Error!", "Failed to send parcel", "error");
-          console.error(err);
-        });
-    }
-  });
-};
+        axiosSecure
+          .post("/parcels", parcelData)
+          .then((res) => {
+            if (res.data.insertedId) {
+              navigate("/dashboard/my-parcels");
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your parcel has been saved,please pay",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          })
+          .catch((err) => {
+            Swal.fire("Error!", "Failed to send parcel", "error");
+            console.error(err);
+          });
+      }
+    });
+  };
 
-console.log(user)
+  console.log(user);
   return (
     <div className="min-h-screen bg-gradient-to-br from-base-200 to-base-100 py-12">
       <NavBar></NavBar>
@@ -183,8 +192,7 @@ console.log(user)
                   Full Name
                 </label>
                 <input
-                defaultValue={user?.displayName
-}
+                  defaultValue={user?.displayName}
                   type="text"
                   {...register("senderName", {
                     required: "Sender name is required",
@@ -268,7 +276,7 @@ console.log(user)
                   })}
                   className="w-full px-5 py-3.5 bg-base-100 border border-base-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <option value="" >Select District</option>
+                  <option value="">Select District</option>
                   {districtByRegion(senderRegion).map((r, i) => (
                     <option key={i} value={r}>
                       {r}
@@ -287,7 +295,9 @@ console.log(user)
                   })}
                   className="w-full px-5 py-3.5 bg-base-100 border border-base-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <option value="" disabled>Select Warehouse</option>
+                  <option value="" disabled>
+                    Select Warehouse
+                  </option>
                   {warehouseByDistricts(senderDistrict).map((w) => (
                     <option value={w}>{w} Hub</option>
                   ))}
@@ -342,7 +352,6 @@ console.log(user)
                   </p>
                 )}
               </div>
-              
 
               <div>
                 <label className="block text-sm font-medium mb-2">
@@ -399,11 +408,11 @@ console.log(user)
                   <option value="" disabled>
                     Select Region
                   </option>
-                  {
-                    regions.map((r,i)=><option key={i} value={r}>{r}</option>)
-                  }
-                  
-                  
+                  {regions.map((r, i) => (
+                    <option key={i} value={r}>
+                      {r}
+                    </option>
+                  ))}
                 </select>
               </div>
               {/*receiver  District */}
@@ -422,11 +431,11 @@ console.log(user)
                   <option value="" disabled>
                     Select District
                   </option>
-                  {
-                    districtByRegion(receiverRegion).map((r,i)=><option key={i} value={r}>{r}</option>)
-                  }
-                  
-                  
+                  {districtByRegion(receiverRegion).map((r, i) => (
+                    <option key={i} value={r}>
+                      {r}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -442,14 +451,12 @@ console.log(user)
                   })}
                   className="w-full px-5 py-3.5 bg-base-100 border border-base-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <option value="" >Select Warehouse</option>
-                  {
-                    warehouseByDistricts(receiverDistrict).map((w,i)=>
-                        <option key={i} value={w}>{w} Hub</option>
-
-                    )
-                  }
-                  
+                  <option value="">Select Warehouse</option>
+                  {warehouseByDistricts(receiverDistrict).map((w, i) => (
+                    <option key={i} value={w}>
+                      {w} Hub
+                    </option>
+                  ))}
                 </select>
               </div>
 

@@ -51,7 +51,7 @@ const MyParcel = () => {
     try {
       const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
       if (res.data.url) {
-        window.location.href = res.data.url;   // Redirect to Stripe
+        window.location.assign(res.data.url);   // Redirect to Stripe
       }
     } catch (error) {
       Swal.fire("Error", "Payment session failed", "error");
@@ -86,7 +86,7 @@ const MyParcel = () => {
               parcels.map((parcel) => (
                 <tr key={parcel._id} className="hover:bg-base-200/50 transition-colors">
                   <td className="px-8 py-5 font-mono font-medium text-primary">
-                    {parcel.trackingId || parcel._id?.slice(-8)}
+                    {parcel.trackingId}
                   </td>
                   <td className="px-8 py-5">{parcel.receiverName}</td>
                   <td className="px-8 py-5">{parcel.parcelName}</td>
@@ -96,14 +96,14 @@ const MyParcel = () => {
                   </td>
 
                   <td className="px-8 py-5">
-                    {parcel.paymentStatus === "Paid" ? (
-                      <span className="px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                    {parcel.paymentStatus === "paid" ? (
+                      <span className="btn btn-sm px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium">
                         Paid
                       </span>
                     ) : (
                       <button 
                         onClick={() => handlePayment(parcel)}
-                        className="button btn btn-sm px-5"
+                        className="button btn btn-sm px-4"
                       >
                         Pay
                       </button>

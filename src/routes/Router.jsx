@@ -11,68 +11,84 @@ import Rider from "../pages/rider/Rider";
 import SendParcel from "../pages/sendParcel/SendParcel";
 import Dashboard from "../layouts/DashboardLayout";
 import MyParcel from "../pages/Dashboard/my-parcel/My-parcel";
+
+import PaymentCancelled from "../pages/Dashboard/PaymentCancelled";
 import PaymentSuccess from "../pages/Dashboard/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
-    children:[
+    children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
       },
       {
-        path: '/coverage',
-        Component:Coverage,
-        loader: ()=> fetch('/serviceCenters.json').then(res=>res.json())
-
+        path: "/coverage",
+        Component: Coverage,
+        loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
       },
-    ]
+    ],
   },
   {
-    path:'/',
+    path: "/",
     Component: AuthLayout,
-    children:[
+    children: [
       {
-        path: '/login',
-        Component: Login
+        path: "/login",
+        Component: Login,
       },
       {
-        path:'/register',
-        Component: RegisterForm
+        path: "/register",
+        Component: RegisterForm,
       },
       {
-        path:'/forgot-password'
-      }
-    ]
-  },
-  {
-    path: '/*',
-    Component: NotFound
-  },
-  {
-    path: '/be-rider',
-    element: <PrivateRoute><Rider></Rider></PrivateRoute>
-  },
-  {
-    path:'/send-parcel',
-    element:<PrivateRoute><SendParcel></SendParcel></PrivateRoute>,
-   loader: ()=> fetch('/serviceCenters.json').then(res=>res.json())
-
-  },
-  {
-    path: '/dashboard',
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-    children:[
-      {
-        path:'my-parcels',
-        Component:MyParcel
+        path: "/forgot-password",
       },
+    ],
+  },
+  {
+    path: "/*",
+    Component: NotFound,
+  },
+  {
+    path: "/be-rider",
+    element: (
+      <PrivateRoute>
+        <Rider></Rider>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/send-parcel",
+    element: (
+      <PrivateRoute>
+        <SendParcel></SendParcel>
+      </PrivateRoute>
+    ),
+    loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path:'payment-success',
-        Component: PaymentSuccess
-      }
-    ]
-  }
+        path: "my-parcels",
+        Component: MyParcel,
+      },
+    ],
+  },
+  {
+    path: "/dashboard/payment-success",
+    Component: PaymentSuccess,
+  },
+  {
+    path: "/dashboard/payment-cancelled",
+    Component: PaymentCancelled,
+  },
 ]);

@@ -25,7 +25,7 @@ const LoginForm = () => {
     <div className="w-full max-w-md bg-white dark:bg-base-300 p-8 rounded-3xl shadow-2xl border border-base-200 dark:border-base-500">
       <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">Welcome to Shifto</h2>
       
-      <form className="space-y-6" onSubmit={handleSubmit(handleLogin)}>
+      <form className="space-y-3" onSubmit={handleSubmit(handleLogin)}>
         <div>
           <label className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email</label>
           <input
@@ -74,11 +74,13 @@ const LoginForm = () => {
         <p className="text-sm text-center text-gray-500 dark:text-gray-400">
           Forgot your password? <a href="#" className="text-primary hover:underline">Reset</a>
         </p>
-        <SocialLogIn></SocialLogIn>
-        <p className="text-sm text-center text-gray-500 dark:text-gray-400">
+        
+        
+      </form>
+      <SocialLogIn></SocialLogIn>
+      <p className="text-sm text-center text-gray-500 dark:text-gray-400">
           Don't have an account? <Link to='/register' className="text-primary hover:underline">Register</Link>
         </p>
-      </form>
     </div>
   );
 };
