@@ -14,11 +14,13 @@ import MyParcel from "../pages/Dashboard/my-parcel/My-parcel";
 
 import PaymentCancelled from "../pages/Dashboard/PaymentCancelled";
 import PaymentSuccess from "../pages/Dashboard/PaymentSuccess";
+import Loading from "../components/Loading";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
+    hydrateFallbackElement:<Loading></Loading>,
     children: [
       {
         index: true,

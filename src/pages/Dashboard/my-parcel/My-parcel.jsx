@@ -45,7 +45,7 @@ const MyParcel = () => {
       parcelName: parcel.parcelName,
       parcelId: parcel._id,
       senderEmail: parcel.senderEmail,
-      cost: Number(parcel.totalPrice)   // Fixed: use totalPrice
+      cost: Number(parcel.totalPrice) ,
     };
 
     try {
