@@ -45,7 +45,7 @@ const TopBrands = () => {
       <div className="max-w-6xl mx-auto px-6">
         <Headings>Serving the Nation’s Fastest Growing Companies</Headings>
 
-        <div className="border-y-1 border-gray-200 p-3">
+        <div className="border-y-1 border-secondary p-3">
           <Swiper
           spaceBetween={30}
           slidesPerView={6}
@@ -70,7 +70,7 @@ const TopBrands = () => {
                 <img 
                   src={brand.logo} 
                   alt={brand.name} 
-                  className="max-h-16 w-auto object-contain"
+                  className="max-h-16 w-auto object-contain rounded-full"
                 />
               </div>
             </SwiperSlide>

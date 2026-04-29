@@ -8,7 +8,7 @@ const Reviews = ({ reviewPromise }) => {
   const reviews = use(reviewPromise);
   console.log(reviews);
   return (
-    <div>
+    <div className="mx-auto ">
         <Headings>Shifto Customer Reviews: Hear from Our Satisfied Clients</Headings>
       <Swiper
         effect={"coverflow"}

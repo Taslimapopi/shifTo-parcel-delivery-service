@@ -1,14 +1,14 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import bannerimg1 from "../../../assets/banner2/1.png";
-import bannerimg2 from "../../../assets/banner2/2.png";
-import bannerimg3 from "../../../assets/banner2/3.png";
-import bannerimg4 from "../../../assets/banner2/4.png";
-import bannerimg5 from "../../../assets/banner2/5.png";
-import bannerimg6 from "../../../assets/banner2/6.png";
-import bannerimg7 from "../../../assets/banner2/7.png";
-import bannerimg8 from "../../../assets/banner2/8.png";
+import bannerimg1 from "../../../assets/banner/1.png";
+import bannerimg2 from "../../../assets/banner/2.png";
+import bannerimg3 from "../../../assets/banner/3.png";
+import bannerimg4 from "../../../assets/banner/4.png";
+import bannerimg5 from "../../../assets/banner/5.png";
+import bannerimg6 from "../../../assets/banner/6.png";
+import bannerimg7 from "../../../assets/banner/7.png";
+import bannerimg8 from "../../../assets/banner/8.png";
 import { Link } from "react-router";
 
 const Banner = () => {
@@ -22,7 +22,7 @@ const Banner = () => {
         showArrows={false}
         interval={1000}
         transitionTime={200}
-        className="rounded-b-3xl overflow-hidden rounded-2xl"
+        className="rounded-b-3xl overflow-hidden rounded-2xl border-1 border-secondary"
       >
         {/* Slide 1 */}
         <div className="relative h-[85vh] md:h-[90vh] flex items-baseline-last justify-center">

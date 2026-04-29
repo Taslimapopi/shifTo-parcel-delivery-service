@@ -13,8 +13,9 @@ const Home = () => {
   return (
     <div className="space-y-4">
       <Banner></Banner>
-      <TopBrands></TopBrands>
+      
       <Workflow></Workflow>
+      <TopBrands></TopBrands>
     
       <Reviews reviewPromise={reviewPromise}></Reviews>
       <AddReview></AddReview>
