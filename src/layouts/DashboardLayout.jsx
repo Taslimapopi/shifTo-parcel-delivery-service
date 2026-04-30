@@ -7,6 +7,7 @@ import {
   BarChart3,
   Settings,
   LogOut,
+  Wallet,
 } from "lucide-react";
 import { Link, Outlet } from "react-router";
 import logo from "./../assets/logo.png";
@@ -17,7 +18,9 @@ export default function Dashboard() {
   const menuItems = [
     { icon: Home, label: "Dashboard", path: "/dashboard" },
     { icon: Package, label: "My Parcels", path: "/dashboard/my-parcels" },
+    { icon: Wallet, label: "Payments", path: "/payment-history" },
     { icon: Truck, label: "Deliveries", path: "/deliveries" },
+    
     { icon: Users, label: "Drivers", path: "/drivers" },
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
     { icon: Settings, label: "Settings", path: "/settings" },
