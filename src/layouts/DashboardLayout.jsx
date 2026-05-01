@@ -8,6 +8,7 @@ import {
   Settings,
   LogOut,
   Wallet,
+  Bike,
 } from "lucide-react";
 import { Link, Outlet } from "react-router";
 import logo from "./../assets/logo.png";
@@ -20,6 +21,7 @@ export default function Dashboard() {
     { icon: Package, label: "My Parcels", path: "/dashboard/my-parcels" },
     { icon: Wallet, label: "Payments", path: "/dashboard/payment-history" },
     { icon: Truck, label: "Deliveries", path: "/deliveries" },
+    { icon: Bike, label: "Approve-riders", path: "/dashboard/approve-rider" },
     
     { icon: Users, label: "Drivers", path: "/drivers" },
     { icon: BarChart3, label: "Analytics", path: "/analytics" },

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const RegisterForm = () => {
   const {
@@ -17,6 +18,7 @@ const RegisterForm = () => {
   const { registerUser, updateUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
   const password = watch("password");
   const passwordRegex =
@@ -50,6 +52,13 @@ const RegisterForm = () => {
               displayName: data.name,
               photoURL: img_url,
             };
+
+            //  post user into db
+            axiosSecure.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                console.log("user created in db");
+              }
+            });
 
             updateUser(userInfo)
               .then(() => {

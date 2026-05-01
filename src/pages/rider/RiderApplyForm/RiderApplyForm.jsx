@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const RiderApplyForm = () => {
+  const axiosSecure = useAxiosSecure()
  
   const {
     register,
@@ -36,7 +39,19 @@ const RiderApplyForm = () => {
  
 
   const onSubmit = (data) => {
-    console.log("Rider আবেদন:", data);
+    console.log(data);
+        axiosSecure.post('/riders', data)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your application has been submitted. We will reach to you in 145 days",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            })
   };
 
   return (
