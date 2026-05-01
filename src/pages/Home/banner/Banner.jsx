@@ -63,9 +63,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
-                Join as Rider
-              </button>
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+                Be a Rider
+              </Link>
             </div>
           </div>
         </div>
@@ -85,9 +85,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -106,9 +106,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -127,9 +127,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -148,9 +148,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -169,9 +169,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -190,9 +190,9 @@ const Banner = () => {
               <button className="button px-8 py-3 text-lg font-semibold">
                 Track Parcel
               </button>
-              <button className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
+              <Link to='/be-rider' className="button px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-gray-100">
                 Be a Rider
-              </button>
+              </Link>
             </div>
           </div>
         </div>

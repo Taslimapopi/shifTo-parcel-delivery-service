@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
-    hydrateFallbackElement:<Loading></Loading>,
+    hydrateFallbackElement: <Loading></Loading>,
     children: [
       {
         index: true,
@@ -31,6 +31,16 @@ export const router = createBrowserRouter([
         path: "/coverage",
         Component: Coverage,
         loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
+      },
+      {
+        path: "/be-rider",
+        element: (
+          <PrivateRoute>
+            <Rider></Rider>
+          </PrivateRoute>
+
+        ),
+        loader: ()=>fetch('/serviceCenters.json').then((res)=> res.json()),
       },
     ],
   },
@@ -55,14 +65,7 @@ export const router = createBrowserRouter([
     path: "/*",
     Component: NotFound,
   },
-  {
-    path: "/be-rider",
-    element: (
-      <PrivateRoute>
-        <Rider></Rider>
-      </PrivateRoute>
-    ),
-  },
+
   {
     path: "/send-parcel",
     element: (
@@ -84,18 +87,18 @@ export const router = createBrowserRouter([
         path: "my-parcels",
         Component: MyParcel,
       },
+      {
+        path: "/dashboard/payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "/dashboard/payment-cancelled",
+        Component: PaymentCancelled,
+      },
+      {
+        path: "/dashboard/payment-history",
+        Component: PaymentHistory,
+      },
     ],
   },
-  {
-    path: "/dashboard/payment-success",
-    Component: PaymentSuccess,
-  },
-  {
-    path: "/dashboard/payment-cancelled",
-    Component: PaymentCancelled,
-  },
-  {
-    path:'payment-history',
-    Component: PaymentHistory,
-  }
 ]);

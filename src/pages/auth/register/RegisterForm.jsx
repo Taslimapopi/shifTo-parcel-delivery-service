@@ -15,8 +15,8 @@ const RegisterForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const { registerUser, updateUser } = useAuth();
-  const navigate =useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const password = watch("password");
   const passwordRegex =
@@ -42,6 +42,7 @@ const RegisterForm = () => {
           )
           .then((res) => {
             const img_url = res.data.data.url;
+
             // update User
 
             const userInfo = {
@@ -53,10 +54,10 @@ const RegisterForm = () => {
             updateUser(userInfo)
               .then(() => {
                 console.log("userprofile updated");
-                navigate(location?.state || '/')
               })
-              .catch((error) => console.log(errors));
+              .catch((error) => console.log(error.message));
           });
+        navigate(location?.state || "/");
       })
       .catch((error) => console.log(error));
   };

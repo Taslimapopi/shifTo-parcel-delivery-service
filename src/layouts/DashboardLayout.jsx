@@ -18,7 +18,7 @@ export default function Dashboard() {
   const menuItems = [
     { icon: Home, label: "Dashboard", path: "/dashboard" },
     { icon: Package, label: "My Parcels", path: "/dashboard/my-parcels" },
-    { icon: Wallet, label: "Payments", path: "/payment-history" },
+    { icon: Wallet, label: "Payments", path: "/dashboard/payment-history" },
     { icon: Truck, label: "Deliveries", path: "/deliveries" },
     
     { icon: Users, label: "Drivers", path: "/drivers" },
