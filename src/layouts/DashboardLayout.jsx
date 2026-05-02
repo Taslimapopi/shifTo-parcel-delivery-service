@@ -23,7 +23,7 @@ export default function Dashboard() {
     { icon: Truck, label: "Deliveries", path: "/deliveries" },
     { icon: Bike, label: "Approve-riders", path: "/dashboard/approve-rider" },
     
-    { icon: Users, label: "Drivers", path: "/drivers" },
+    { icon: Users, label: "Manage Users", path: "/dashboard/manage-user" },
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
     { icon: Settings, label: "Settings", path: "/settings" },
   ];
