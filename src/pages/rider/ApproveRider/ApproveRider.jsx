@@ -44,43 +44,80 @@ const ApproveRiders = () => {
         startIndex + ITEMS_PER_PAGE
     );
 
-    // 🔄 Status update
-    const updateRiderStatus = (rider, status) => {
-        axiosSecure.patch(`/riders/${rider._id}`, {
-            status,
-            email: rider.email
-        }).then(res => {
-            if (res.data.modifiedCount) {
-                refetch();
+    // 🔄 Update Status (API)
+    const updateRiderStatus = async (rider, status) => {
+        try {
+            const res = await axiosSecure.patch(`/riders/${rider._id}`, {
+                status,
+                email: rider.email
+            });
+
+            if (res.data.result?.modifiedCount) {
+                await refetch();
+
                 Swal.fire({
                     icon: "success",
-                    title: `Status → ${status}`,
+                    title: `Rider ${status} successfully`,
                     timer: 1500,
                     showConfirmButton: false
                 });
+            } else {
+                Swal.fire("No Change", "Status already same", "info");
+            }
+        } catch (err) {
+            Swal.fire("Error", "Something went wrong", "error");
+        }
+    };
+
+    // ✅ Approve Confirm
+    const handleApproval = (rider) => {
+        Swal.fire({
+            title: "Approve this rider?",
+            text: rider.name,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, approve"
+        }).then(result => {
+            if (result.isConfirmed) {
+                updateRiderStatus(rider, 'approved');
             }
         });
     };
 
+    // ❌ Reject Confirm
+    const handleRejection = (rider) => {
+        Swal.fire({
+            title: "Reject this rider?",
+            text: rider.name,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, reject"
+        }).then(result => {
+            if (result.isConfirmed) {
+                updateRiderStatus(rider, 'rejected');
+            }
+        });
+    };
+
+    // 🗑 Delete
     const handleDelete = (id) => {
         Swal.fire({
-            title: "Are you sure?",
+            title: "Delete this rider?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Delete"
-        }).then(result => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/riders/${id}`).then(res => {
-                    if (res.data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire("Deleted!", "", "success");
-                    }
-                });
+                const res = await axiosSecure.delete(`/riders/${id}`);
+                if (res.data.deletedCount > 0) {
+                    await refetch();
+                    Swal.fire("Deleted!", "", "success");
+                }
             }
         });
     };
 
-    // 🎨 Status badge
+    // 🎨 Status Badge
     const getStatusBadge = (status) => {
         const base = "px-3 py-1 rounded-full text-xs font-semibold";
         if (status === 'approved')
@@ -96,7 +133,7 @@ const ApproveRiders = () => {
                 Riders ({filteredRiders.length})
             </h2>
 
-            {/* 🔍 Search + Filter */}
+            {/* Search + Filter */}
             <div className="flex gap-3 mb-4">
                 <input
                     type="text"
@@ -124,7 +161,7 @@ const ApproveRiders = () => {
                 </select>
             </div>
 
-            {/* 📊 Table */}
+            {/* Table */}
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     <thead>
@@ -149,41 +186,35 @@ const ApproveRiders = () => {
 
                                 <td className="flex gap-2">
 
-                                    <div className="tooltip" data-tip="View">
-                                        <button
-                                            onClick={() => setSelectedRider(rider)}
-                                            className="btn btn-sm"
-                                        >
-                                            <FaEye />
-                                        </button>
-                                    </div>
+                                    <button
+                                        onClick={() => setSelectedRider(rider)}
+                                        className="btn btn-sm"
+                                    >
+                                        <FaEye />
+                                    </button>
 
-                                    <div className="tooltip" data-tip="Approve">
-                                        <button
-                                            onClick={() => updateRiderStatus(rider, 'approved')}
-                                            className="btn btn-sm"
-                                        >
-                                            <FaUserCheck />
-                                        </button>
-                                    </div>
+                                    <button
+                                        onClick={() => handleApproval(rider)}
+                                        disabled={rider.status === 'approved'}
+                                        className="btn btn-sm"
+                                    >
+                                        <FaUserCheck />
+                                    </button>
 
-                                    <div className="tooltip" data-tip="Reject">
-                                        <button
-                                            onClick={() => updateRiderStatus(rider, 'rejected')}
-                                            className="btn btn-sm"
-                                        >
-                                            <IoPersonRemoveSharp />
-                                        </button>
-                                    </div>
+                                    <button
+                                        onClick={() => handleRejection(rider)}
+                                        disabled={rider.status === 'rejected'}
+                                        className="btn btn-sm"
+                                    >
+                                        <IoPersonRemoveSharp />
+                                    </button>
 
-                                    <div className="tooltip" data-tip="Delete">
-                                        <button
-                                            onClick={() => handleDelete(rider._id)}
-                                            className="btn btn-sm"
-                                        >
-                                            <FaTrashCan />
-                                        </button>
-                                    </div>
+                                    <button
+                                        onClick={() => handleDelete(rider._id)}
+                                        className="btn btn-sm"
+                                    >
+                                        <FaTrashCan />
+                                    </button>
 
                                 </td>
                             </tr>
@@ -192,7 +223,7 @@ const ApproveRiders = () => {
                 </table>
             </div>
 
-            {/* 📄 Pagination */}
+            {/* Pagination */}
             <div className="flex justify-center mt-4 gap-2">
                 {
                     [...Array(totalPages).keys()].map(page => (
@@ -207,7 +238,7 @@ const ApproveRiders = () => {
                 }
             </div>
 
-            {/* 🧾 Modal */}
+            {/* Modal */}
             {selectedRider && (
                 <dialog className="modal modal-open">
                     <div className="modal-box">
@@ -218,11 +249,7 @@ const ApproveRiders = () => {
                             <p><b>Email:</b> {selectedRider.email}</p>
                             <p><b>Phone:</b> {selectedRider.phone}</p>
                             <p><b>Vehicle:</b> {selectedRider.vehicle}</p>
-                            <p><b>Region:</b> {selectedRider.riderRegion}</p>
                             <p><b>District:</b> {selectedRider.district}</p>
-                            <p><b>Address:</b> {selectedRider.address}</p>
-                            <p><b>NID:</b> {selectedRider.nid}</p>
-                            <p><b>Experience:</b> {selectedRider.experience} yrs</p>
                             <p><b>Status:</b> {selectedRider.status}</p>
                         </div>
 
@@ -235,10 +262,6 @@ const ApproveRiders = () => {
                             </button>
                         </div>
                     </div>
-
-                    <form method="dialog" className="modal-backdrop">
-                        <button onClick={() => setSelectedRider(null)}>close</button>
-                    </form>
                 </dialog>
             )}
         </div>
