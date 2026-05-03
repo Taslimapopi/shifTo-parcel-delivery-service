@@ -12,18 +12,32 @@ import {
 } from "lucide-react";
 import { Link, Outlet } from "react-router";
 import logo from "./../assets/logo.png";
+import useRole from "../hooks/useRole";
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(true);
+  const { role } = useRole();
 
   const menuItems = [
     { icon: Home, label: "Dashboard", path: "/dashboard" },
     { icon: Package, label: "My Parcels", path: "/dashboard/my-parcels" },
     { icon: Wallet, label: "Payments", path: "/dashboard/payment-history" },
     { icon: Truck, label: "Deliveries", path: "/deliveries" },
-    { icon: Bike, label: "Approve-riders", path: "/dashboard/approve-rider" },
-    
-    { icon: Users, label: "Manage Users", path: "/dashboard/manage-user" },
+    ...(role === "admin"
+      ? [
+          {
+            icon: Bike,
+            label: "Approve Riders",
+            path: "/dashboard/approve-rider",
+          },
+          {
+            icon: Users,
+            label: "Manage Users",
+            path: "/dashboard/manage-user",
+          },
+        ]
+      : []),
+
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
     { icon: Settings, label: "Settings", path: "/settings" },
   ];

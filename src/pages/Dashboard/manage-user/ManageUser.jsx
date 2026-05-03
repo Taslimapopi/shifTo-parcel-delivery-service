@@ -10,12 +10,12 @@ const ManageUser = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const axiosSecure = useAxiosSecure();
 
-  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const { refetch, data: users = [] } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users",searchText],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get(`/users?searchText=${searchText}`);
       return res.data;
     },
   });
@@ -110,11 +110,11 @@ const ManageUser = () => {
       {/* 🔍 Search */}
       <div className="mb-4">
         <input
-          type="text"
+
           placeholder="Search users..."
           className="input input-bordered w-full max-w-sm"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          type = "search"
+          onChange={(e) => setSearchText(e.target.value)}
         />
       </div>
 
@@ -159,8 +159,22 @@ const ManageUser = () => {
 
                 {/* Admin Actions */}
                 <td>
-                  <div className="flex gap-2">
-                    <div
+                  <div className="text-center">
+                    {
+                        user.role ==='admin' ?
+                        <div
+                      className="tooltip tooltip-secondary"
+                      data-tip="Remove Admin"
+                    >
+                      <button
+                        onClick={() => removeAdmin(user)}
+                        className="btn btn-sm bg-red-400 text-black"
+                      >
+                        <FiShieldOff />
+                      </button>
+                    </div>
+                        :
+                        <div
                       className="tooltip tooltip-secondary"
                       data-tip="Make Admin"
                     >
@@ -172,17 +186,10 @@ const ManageUser = () => {
                       </button>
                     </div>
 
-                    <div
-                      className="tooltip tooltip-secondary"
-                      data-tip="Remove Admin"
-                    >
-                      <button
-                        onClick={() => removeAdmin(user)}
-                        className="btn btn-sm bg-red-400 text-black"
-                      >
-                        <FiShieldOff />
-                      </button>
-                    </div>
+                    }
+                    
+
+                    
                   </div>
                 </td>
 
@@ -195,7 +202,7 @@ const ManageUser = () => {
                     >
                       <button
                         onClick={() => handleView(user)}
-                        className="btn btn-sm"
+                        className="btn btn-sm bg-primary text-white"
                       >
                         <FaEye />
                       </button>
@@ -205,10 +212,12 @@ const ManageUser = () => {
                       className="tooltip tooltip-secondary"
                       data-tip="Delete User"
                     >
-                      <button onClick={()=>handleDelete(user)}
-                      className="btn btn-sm">
-                        <FaTrashCan />
-                      </button>
+                      <button
+  onClick={() => handleDelete(user)}
+  className="btn btn-sm btn-error text-white"
+>
+  <FaTrashCan />
+</button>
                     </div>
                   </div>
                 </td>
