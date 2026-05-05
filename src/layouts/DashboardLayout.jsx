@@ -9,10 +9,12 @@ import {
   LogOut,
   Wallet,
   Bike,
+  Motorbike,
 } from "lucide-react";
 import { Link, Outlet } from "react-router";
 import logo from "./../assets/logo.png";
 import useRole from "../hooks/useRole";
+import { RiEBike2Fill } from "react-icons/ri";
 
 export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(true);
@@ -22,7 +24,7 @@ export default function Dashboard() {
     { icon: Home, label: "Dashboard", path: "/dashboard" },
     { icon: Package, label: "My Parcels", path: "/dashboard/my-parcels" },
     { icon: Wallet, label: "Payments", path: "/dashboard/payment-history" },
-    { icon: Truck, label: "Deliveries", path: "/deliveries" },
+    
     ...(role === "admin"
       ? [
           {
@@ -31,12 +33,18 @@ export default function Dashboard() {
             path: "/dashboard/approve-rider",
           },
           {
+            icon: Motorbike,
+            label: "Assign Riders",
+            path: "/dashboard/assign-rider",
+          },
+          {
             icon: Users,
             label: "Manage Users",
             path: "/dashboard/manage-user",
           },
         ]
       : []),
+      { icon: Truck, label: "Deliveries", path: "/deliveries" },
 
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
     { icon: Settings, label: "Settings", path: "/settings" },
