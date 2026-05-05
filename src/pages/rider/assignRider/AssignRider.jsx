@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AssignRider = () => {
   const axiosSecure = useAxiosSecure();
   const riderModalRef = useRef();
+  const [selectedParcel, setSelectedParcel] = useState(null)
 
-  const { data: parcels = [] } = useQuery({
+  const { data: parcels = [],refetch: parcelsRefetch } = useQuery({
     queryKey: ["parcels", "pending-pickup"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -17,16 +19,43 @@ const AssignRider = () => {
   });
 
   const { data: riders = [] } = useQuery({
-    queryKey: ["riders", "available"],
+    queryKey: ["riders", "available",selectedParcel?.senderDistrict],
+    enabled: !!selectedParcel,
     queryFn: async () => {
-      const res = await axiosSecure.get("/riders?workStatus=available");
+      const res = await axiosSecure.get(`/riders?workStatus=available&district=${selectedParcel?.senderDistrict}&status=approved`);
       return res.data;
     },
   });
 
   const openAssignRiderModal = (parcel) => {
     riderModalRef.current.showModal();
+    setSelectedParcel(parcel)
   };
+
+  const handleAssignRider = rider =>{
+    const riderAssignInfo = {
+        riderId : rider._id,
+        riderName: rider.name,
+        riderEmail: rider.email,
+        parcelId: selectedParcel._Id
+    }
+
+    axiosSecure.patch(`/parcels/${selectedParcel._id}`,riderAssignInfo)
+    .then(res => {
+                if (res.data.modifiedCount) {
+                    riderModalRef.current.close();
+                    parcelsRefetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Rider has been assigned.`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+  }
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -87,8 +116,9 @@ const AssignRider = () => {
                     <td>{rider.email}</td>
                     <td>
                       <button
+                      onClick={()=>handleAssignRider(rider)}
                         
-                        className="btn btn-primary text-black"
+                        className="btn btn-primary text-white"
                       >
                         Assign
                       </button>

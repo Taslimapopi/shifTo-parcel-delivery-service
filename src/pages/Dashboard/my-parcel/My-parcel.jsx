@@ -111,9 +111,9 @@ const MyParcel = () => {
                   </td>
 
                   <td className="px-8 py-5">
-                    <span className={`px-4 py-1.5 rounded-full text-sm font-sm
+                    <span className={`px-4 py-1.5 rounded-full text-sm font-sm whitespace-nowrap
                       ${parcel.deliveryStatus === "Delivered" ? "bg-emerald-100 text-emerald-700" :
-                        parcel.deliveryStatus === "In Transit" ? "bg-blue-100 text-blue-700" :
+                        parcel.deliveryStatus === "rider-assigned" ? "bg-blue-100 text-blue-700" :
                         "bg-orange-100 text-orange-700"}`}>
                       {parcel.deliveryStatus || "Pending"}
                     </span>
