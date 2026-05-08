@@ -44,7 +44,7 @@ export default function Dashboard() {
           },
         ]
       : []),
-      { icon: Truck, label: "Deliveries", path: "/deliveries" },
+      { icon: Truck, label: "Deliveries", path: "/dashboard/assign-deliveries" },
 
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
     { icon: Settings, label: "Settings", path: "/settings" },

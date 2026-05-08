@@ -21,6 +21,7 @@ import ManageUser from "../pages/Dashboard/manage-user/ManageUser";
 import AdminRoute from "./AdminRoute";
 import ApproveRiders from "../pages/rider/ApproveRider/ApproveRider";
 import AssignRider from "../pages/rider/assignRider/AssignRider";
+import AssignDeliveries from "../pages/rider/AssignDeliveries/AssignDeliveries";
 
 export const router = createBrowserRouter([
   {
@@ -115,7 +116,12 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/manage-user',
         Component: ManageUser
+      },
+      {
+        path:'/dashboard/assign-deliveries',
+        element: <AssignDeliveries></AssignDeliveries>
       }
+
     ],
   },
 ]);
