@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyParcel = () => {
   const { user } = useAuth();
@@ -86,7 +87,7 @@ const MyParcel = () => {
               parcels.map((parcel) => (
                 <tr key={parcel._id} className="hover:bg-base-200/50 transition-colors">
                   <td className="px-8 py-5 font-mono font-medium text-primary">
-                    {parcel.trackingId}
+                    <Link to={`/parcel-tracking/${parcel.trackingId}`} >{parcel.trackingId}</Link>
                   </td>
                   <td className="px-8 py-5">{parcel.receiverName}</td>
                   <td className="px-8 py-5">{parcel.parcelName}</td>

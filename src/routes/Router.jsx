@@ -22,6 +22,8 @@ import AdminRoute from "./AdminRoute";
 import ApproveRiders from "../pages/rider/ApproveRider/ApproveRider";
 import AssignRider from "../pages/rider/assignRider/AssignRider";
 import AssignDeliveries from "../pages/rider/AssignDeliveries/AssignDeliveries";
+import CompletedTask from "../pages/rider/CompletedTask/CompletedTask";
+import ParcelTracking from "../pages/ParcelTracking/ParcelTracking";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +72,10 @@ export const router = createBrowserRouter([
   {
     path: "/*",
     Component: NotFound,
+  },
+  {
+    path: "/parcel-tracking/:trackingId",
+    Component: ParcelTracking,
   },
 
   {
@@ -120,7 +126,11 @@ export const router = createBrowserRouter([
       {
         path:'/dashboard/assign-deliveries',
         element: <AssignDeliveries></AssignDeliveries>
-      }
+      },
+      {
+        path:'/dashboard/parcel-delivered',
+        element: <CompletedTask></CompletedTask>
+      },
 
     ],
   },

@@ -10,6 +10,7 @@ import {
   Wallet,
   Bike,
   Motorbike,
+  CheckCheck,
 } from "lucide-react";
 import { Link, Outlet } from "react-router";
 import logo from "./../assets/logo.png";
@@ -45,6 +46,7 @@ export default function Dashboard() {
         ]
       : []),
       { icon: Truck, label: "Deliveries", path: "/dashboard/assign-deliveries" },
+      { icon: CheckCheck, label: "Completed Deliveries", path: "/dashboard/parcel-delivered" },
 
     { icon: BarChart3, label: "Analytics", path: "/analytics" },
     { icon: Settings, label: "Settings", path: "/settings" },
